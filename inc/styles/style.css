@@ -1,6 +1,12 @@
 .buttonstandardsize {
 	width: 40%;
+	background-color: #FFFF00;
 }
+
+.buttonstandardsize:hover {
+	background-color: #E6E600;
+}
+
 
 #particles-js{
 	width:100%;
