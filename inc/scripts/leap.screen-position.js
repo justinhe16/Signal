@@ -21,13 +21,6 @@ controller.use 'screenPosition', {
 More info on vec3 can be found, here: http://glmatrix.net/docs/2.2.0/symbols/vec3.html
 */
 
-
-  /*Leap.loop()
-    .use('boneHand', {
-      targetEl: document.body,
-      arm: true
-    });*/
-
 (function() {
   var screenPosition;
 
