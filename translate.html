@@ -1,28 +1,80 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
+
 	<title>Translate</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="inc/scripts/leap-0.6.4.min.js"></script>
-	<script src="inc/scripts/leap.screen-position.js"></script>
-	<script src="inc/scripts/translate.js"></script>
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+	<style>
+		body {
+			background-color: white;
+		}
+		canvas.leap-boneHand {
+			position: fixed;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+	</style>
+
+	<script src="inc/scripts/Three.js"></script>
+	<script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
+	<script src="https://js.leapmotion.com/leap-plugins-0.1.10.js"></script>
+	<script src="inc/scripts/OrbitControls.js"></script>
+	<script src="inc/scripts/leap.bone-hand.js"></script>
+
 </head>
+
 <body>
-	<div id="main">
-		<button id="pause" onclick="togglePause()">Pause</button>
-		<input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
-		<h3>Frame data:</h3>
-		<div id="frameData"></div>
-		<div style="clear:both;"></div>
-		<h3>Hand data:</h3>
-		<div id="handData"></div>
-		<div style="clear:both;"></div>
-		<h3>Finger and tool data:</h3>
-		<div id="pointableData"></div>
-		<div style="clear:both;"></div>
-		<h3>Gesture data:</h3>
-		<div id="gestureData"></div>
-	</div>
+	Hello world
 </body>
+
+<script>
+  // Set up plugins
+
+  Leap.loop()
+  .use('boneHand', {
+  	targetEl: document.body,
+  	arm: true,
+  	opacity: 0.5
+  });
+
+
+
+  // Set up scene
+
+  var scene    = Leap.loopController.plugins.boneHand.scene;
+  var camera   = Leap.loopController.plugins.boneHand.camera;
+  var renderer = Leap.loopController.plugins.boneHand.renderer;
+
+  var plane = new THREE.Mesh(
+  	new THREE.PlaneGeometry(80,80),
+  	new THREE.MeshPhongMaterial({wireframe: false})
+  	);
+
+
+  plane.scale.set(2,2,2);
+  plane.position.set(0,200,-100);
+
+  camera.lookAt( plane.position );
+
+ // scene.add(plane);
+
+ var axisHelper = new THREE.AxisHelper( 100 );
+ scene.add( axisHelper );
+
+ var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
+ Leap.loopController.on('handFound', function(hand) {
+ 	document.querySelector('canvas').style.display = 'block';
+ }).on('handLost', function(hand){
+ 	if (Leap.loopController.frame(0).hands.length === 0){
+ 		document.querySelector('canvas').style.display = 'none';
+ 	}
+ });
+
+ console.log("wot");
+</script>
 </html>
