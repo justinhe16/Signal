@@ -39,6 +39,11 @@ Leap.loop(controllerOptions, function(frame) {
   frameOutput.innerHTML = "<div style='width:300px; float:left; padding:5px'>" + frameString + "</div>";
 
   // Display Hand object data
+  Leap.loop()
+    .use('boneHand', {
+      targetEl: document.body,
+      arm: true
+    });
   var handOutput = document.getElementById("handData");
   var handString = "";
   if (frame.hands.length > 0) {
