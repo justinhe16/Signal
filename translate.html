@@ -48,6 +48,9 @@
   var scene    = Leap.loopController.plugins.boneHand.scene;
   var camera   = Leap.loopController.plugins.boneHand.camera;
   var renderer = Leap.loopController.plugins.boneHand.renderer;
+  
+  var vrEffect = new THREE.VREffect(renderer);
+  var vrControls = new THREE.VRControls(camera);
 
   var plane = new THREE.Mesh(
   	new THREE.PlaneGeometry(80,80),
@@ -77,5 +80,9 @@
  });
 
  console.log("wot");
+ 
+
+    vrControls.update();
+    vrEffect.render(scene, camera);
 </script>
 </html>
