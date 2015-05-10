@@ -24,7 +24,7 @@
  camera.lookAt( plane.position );
 
  // scene.add(plane);
- // added comment so that way i could commit something to github! 
+ // more comments. 
 
  var axisHelper = new THREE.AxisHelper( 100 );
  scene.add( axisHelper );
