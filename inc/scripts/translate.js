@@ -33,7 +33,7 @@ Leap.loopController.on('handFound', function(hand) {
   if (Leap.loopController.frame(0).hands.length === 0){
     document.querySelector('canvas').style.display = 'none';
   }
-}).on('frame', function(hand) {
+}).on('frame', function(hand) { //every frame, aka every second or so
   if (hand.valid){
     var extendedFingers = 0;
     for(var f = 0; f < hand.fingers.length; f++){
