@@ -20,7 +20,7 @@
   plane.position.set(0,200,-100);
   camera.lookAt( plane.position );
 
-  scene.add(plane);
+ // scene.add(plane);
 
   var axisHelper = new THREE.AxisHelper( 100 );
   scene.add( axisHelper );
