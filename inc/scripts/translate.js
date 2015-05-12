@@ -11,33 +11,40 @@
   var scene    = Leap.loopController.plugins.boneHand.scene;
   var camera   = Leap.loopController.plugins.boneHand.camera;
   var renderer = Leap.loopController.plugins.boneHand.renderer;
-  
-  //var vrEffect = new THREE.VREffect(renderer);
- // var vrControls = new THREE.VRControls(camera);
 
- var plane = new THREE.Mesh(
-  new THREE.PlaneGeometry(80,80),
-  new THREE.MeshPhongMaterial({wireframe: false})
-  );
- plane.scale.set(2,2,2);
- plane.position.set(0,200,-100);
- camera.lookAt( plane.position );
+  var plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(80,80),
+    new THREE.MeshPhongMaterial({wireframe: false})
+    );
+  plane.scale.set(2,2,2);
+  plane.position.set(0,200,-100);
+  camera.lookAt( plane.position );
 
- // scene.add(plane);
- // more comments. 
+  scene.add(plane);
 
- var axisHelper = new THREE.AxisHelper( 100 );
- scene.add( axisHelper );
- 
- var controls = new THREE.OrbitControls( camera, renderer.domElement );
- Leap.loopController.on('handFound', function(hand) {
-  document.querySelector('canvas').style.display = 'block';
-}).on('handLost', function(hand){
-  if (Leap.loopController.frame(0).hands.length === 0){
-    document.querySelector('canvas').style.display = 'none';
-  }
-});
-console.log("wot");
+  var axisHelper = new THREE.AxisHelper( 100 );
+  scene.add( axisHelper );
 
-   // vrControls.update();
-    //vrEffect.render(scene, camera);
+  var controls = new THREE.OrbitControls( camera, renderer.domElement );
+  Leap.loopController.on('handFound', function(hand) {
+    document.querySelector('canvas').style.display = 'block';
+  }).on('handLost', function(hand){
+    if (Leap.loopController.frame(0).hands.length === 0){
+      document.querySelector('canvas').style.display = 'none';
+    }
+  });
+
+  // end setting up scene
+  //jquery experimentation
+  $(document).ready(function() {
+    $("#testbutton").click(function() {
+        GenerateLetters(); 
+      });
+  });
+
+
+    // methods
+    function GenerateLetters() {
+      var text = $("<text></text>").text("TESTTEXT");
+      $("#Letters").append(text);
+    }
