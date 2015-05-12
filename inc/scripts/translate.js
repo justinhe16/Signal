@@ -45,6 +45,6 @@
 
     // methods
     function GenerateLetters() {
-      var text = $("<text></text>").text("HelloWorld");
+      var text = $("<text></text>").text("Hello");
       $("#Letters").append(text);
     }
