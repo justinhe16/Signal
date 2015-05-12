@@ -35,7 +35,7 @@
   });
 
   // end setting up scene
-  //jquery experimentation
+  //jquery experimentation edit: WOW IT WORKS 
   $(document).ready(function() {
     $("#testbutton").click(function() {
         GenerateLetters(); 
@@ -45,6 +45,6 @@
 
     // methods
     function GenerateLetters() {
-      var text = $("<text></text>").text("TESTTEXT");
+      var text = $("<text></text>").text(" TESTTEXT");
       $("#Letters").append(text);
     }

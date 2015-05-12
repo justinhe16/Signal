@@ -18,6 +18,7 @@
 		}
 	</style>
 
+	<link rel="stylesheet" type="text/css" href="inc/styles/bootstrap.min.css">
 	<script src="inc/scripts/Three.js"></script>
 	<script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
 	<script src="https://js.leapmotion.com/leap-plugins-0.1.10.js"></script>
@@ -26,13 +27,14 @@
 	<script src="inc/scripts/leap.bone-hand.js"></script>
 
 </head>
-
-<body>
-<center> Welcome to Signal! </center>
-<center> Put Your Hand Over the Controller to Begin</center>
-<button id="testbutton">TEST</button>
-<p id="Letters">Your Translation:</p>
-</body>
+<div class="container">
+	<body>
+	<h1><center> Welcome to Signal! </center></h1>
+		<h2><center> Put Your Hand Over the Controller to Begin</center></h2>
+		<center><button id="testbutton">TEST</button><center>
+		<p id="Letters">Your Translation: </p>
+	</body>
+</div>
 
 
 <script src="inc/scripts/translate.js"></script>
