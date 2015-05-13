@@ -42,7 +42,7 @@ Leap.loopController.on('handFound', function(hand) {
     }
     if(extendedFingers == 5){
       if(eddieshelp == true){
-       GenerateLetters();
+       GenerateLetters("A");
        eddieshelp = false;
      }
    }
@@ -64,5 +64,10 @@ $(document).ready(function() {
   // methods
   function GenerateLetters() {
     var text = $("<text></text>").text(" 1");
+    $("#Letters").append(text);
+  }
+
+  function GenerateLetters(x) {
+    var text = $("<text></text>").text(x);
     $("#Letters").append(text);
   }
