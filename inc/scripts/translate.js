@@ -56,16 +56,12 @@ Leap.loopController.on('handFound', function(hand) {
 //jquery experimentation edit: WOW IT WORKS 
 $(document).ready(function() {
   $("#testbutton").click(function() {
-    GenerateLetters(); 
+    GenerateLetters("hello"); 
   });
 });
 
 
   // methods
-  function GenerateLetters() {
-    var text = $("<text></text>").text(" 1");
-    $("#Letters").append(text);
-  }
 
   function GenerateLetters(x) {
     var text = $("<text></text>").text(x);
