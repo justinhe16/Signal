@@ -25,11 +25,16 @@ camera.lookAt( plane.position );
 // var axisHelper = new THREE.AxisHelper( 100 );
 // scene.add( axisHelper );
 //  var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
+
+var universalflag = false;
 var flag1 = false;
 var flag2 = false;
 var flag3 = false;
 var flag4 = false;
 var flag5 = false;
+
 
 Leap.loopController.on('handFound', function(hand) {
   document.querySelector('canvas').style.display = 'block';
@@ -45,39 +50,95 @@ Leap.loopController.on('handFound', function(hand) {
       if(finger.extended){
         extendedFingers++;
         if(finger.type == 0){
+          console.log("flag1");
           flag1 = true;
-        } //A!
+        } //Thumb
         if(finger.type == 1){
+          console.log("flag2");
           flag2 = true;
-        }
+        } //Index
         if(finger.type == 2){
+          console.log("flag3");
           flag3 = true;
-        }
+        } //Middle
         if(finger.type == 3){
+          console.log("flag4");
           flag4 = true;
-        }
+        } //Ring
         if(finger.type == 4){
+          console.log("flag5");
           flag5 = true;
-        }
+        } //Pinkie
       } 
     }
 
     if(extendedFingers == 1){
-      if(flag1 == true && flag2 == false && flag3 == false && flag4 == false && flag5 == false){
+      console.log("1 finger extended");
+      if(flag1 == true && flag2 == false && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
        GenerateLetters("A");
-       flag1 = false;
+       universalflag = false;
      }
+     flag1 = false;
+     flag2 = false;
+     flag3 = false;
+     flag4 = false;
+     flag5 = false;
    }
    else if(extendedFingers == 4){
-    if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == true){
+    console.log("4 fingers extended");
+    if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
       GenerateLetters("B");
-      flag2 = false;
-      flag3 = false;
-      flag4 = false;
-      flag5 = false;
+      universalflag = false;
     }
+    flag1 = false;
+    flag2 = false;
+    flag3 = false;
+    flag4 = false;
+    flag5 = false;
+  }
+  else{
+    universalflag = true;
   }
 }
+});
+
+var controllerOptions = {enableGestures: true};
+Leap.loop(controllerOptions, function(frame) {
+
+  // Display Gesture object data
+  if (frame.gestures.length > 0) {
+    for (var i = 0; i < frame.gestures.length; i++) {
+      var gesture = frame.gestures[i];
+      if(gesture.type == "swipe") {
+          //Classify swipe as either horizontal or vertical
+          var isHorizontal = Math.abs(gesture.direction[0]) > Math.abs(gesture.direction[1]);
+          var isVertical = Math.abs(gesture.direction[1]) > Math.abs(gesture.direction[0]);
+          //Classify as right-left or up-down
+          if(isHorizontal){
+              if(gesture.direction[0] > 0 && universalflag == true){
+                  swipeDirection = "right";
+                  swipeGesture();
+                  universalflag = false;
+              } else if (gesture.direction[0] < 0 && universalflag == true) {
+                  swipeDirection = "left";
+                  swipeGesture();
+                  universalflag = false;
+              }
+          } else if (isVertical) { //vertical
+              if(gesture.direction[1] > 0){
+                  swipeDirection = "up";
+              } else {
+                  swipeDirection = "down";
+              }                  
+          }
+          else {
+            universalflag = true;
+          }
+          console.log(swipeDirection);
+       }
+     }
+  }
+
 });
 
 // end setting up scene
@@ -93,5 +154,10 @@ $(document).ready(function() {
 
   function GenerateLetters(x) {
     var text = $("<text></text>").text(x);
+    $("#Letters").append(text);
+  }
+
+  function swipeGesture(){
+    var text = $("<text></text>").text(" ");
     $("#Letters").append(text);
   }
