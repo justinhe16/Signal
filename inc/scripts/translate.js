@@ -25,7 +25,11 @@ camera.lookAt( plane.position );
 // var axisHelper = new THREE.AxisHelper( 100 );
 // scene.add( axisHelper );
 //  var controls = new THREE.OrbitControls( camera, renderer.domElement );
-var eddieshelp = false;
+var flag1 = false;
+var flag2 = false;
+var flag3 = false;
+var flag4 = false;
+var flag5 = false;
 
 Leap.loopController.on('handFound', function(hand) {
   document.querySelector('canvas').style.display = 'block';
@@ -38,18 +42,42 @@ Leap.loopController.on('handFound', function(hand) {
     var extendedFingers = 0;
     for(var f = 0; f < hand.fingers.length; f++){
       var finger = hand.fingers[f];
-      if(finger.extended) extendedFingers++;
+      if(finger.extended){
+        extendedFingers++;
+        if(finger.type == 0){
+          flag1 = true;
+        } //A!
+        if(finger.type == 1){
+          flag2 = true;
+        }
+        if(finger.type == 2){
+          flag3 = true;
+        }
+        if(finger.type == 3){
+          flag4 = true;
+        }
+        if(finger.type == 4){
+          flag5 = true;
+        }
+      } 
     }
-    if(extendedFingers == 5){
-      if(eddieshelp == true){
+
+    if(extendedFingers == 1){
+      if(flag1 == true && flag2 == false && flag3 == false && flag4 == false && flag5 == false){
        GenerateLetters("A");
-       eddieshelp = false;
+       flag1 = false;
      }
    }
-   if(extendedFingers != 5){
-    eddieshelp = true;
+   else if(extendedFingers == 4){
+    if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == true){
+      GenerateLetters("B");
+      flag2 = false;
+      flag3 = false;
+      flag4 = false;
+      flag5 = false;
     }
   }
+}
 });
 
 // end setting up scene
