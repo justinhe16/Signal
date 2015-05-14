@@ -117,11 +117,11 @@ Leap.loop(controllerOptions, function(frame) {
           if(isHorizontal){
               if(gesture.direction[0] > 0 && universalflag == true){
                   swipeDirection = "right";
-                  swipeGesture();
+                 swipeSpace();
                   universalflag = false;
               } else if (gesture.direction[0] < 0 && universalflag == true) {
                   swipeDirection = "left";
-                  swipeGesture();
+                 swipeSpace();
                   universalflag = false;
               }
           } else if (isVertical) { //vertical
@@ -157,7 +157,7 @@ $(document).ready(function() {
     $("#Letters").append(text);
   }
 
-  function swipeGesture(){
+  function swipeSpace(){
     var text = $("<text></text>").text(" ");
     $("#Letters").append(text);
   }
