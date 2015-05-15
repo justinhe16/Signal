@@ -43,8 +43,8 @@ Leap.loopController.on('handFound', function(hand) {
     document.querySelector('canvas').style.display = 'none';
   }
 }).on('frame', function(hand) { //every frame, aka every second or so
+        var extendedFingers = 0;
   if (hand.valid){
-    var extendedFingers = 0;
     for(var f = 0; f < hand.fingers.length; f++){
       var finger = hand.fingers[f];
       if(finger.extended){
@@ -78,13 +78,29 @@ Leap.loopController.on('handFound', function(hand) {
        GenerateLetters("A");
        universalflag = false;
      }
-     flag1 = false;
-     flag2 = false;
-     flag3 = false;
-     flag4 = false;
-     flag5 = false;
-   }
-   else if(extendedFingers == 4){
+     else if(flag1 == false && flag2 == true && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
+      GenerateLetters("D");
+      universalflag = false;
+    }
+    flag1 = false;
+    flag2 = false;
+    flag3 = false;
+    flag4 = false;
+    flag5 = false;
+  }
+  else if(extendedFingers == 0){
+    console.log("0 fingers extended");
+    if(flag1 == false && flag2 == false && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
+    GenerateLetters("E");
+    universalflag = false;
+  }
+    flag1 = false;
+    flag2 = false;
+    flag3 = false;
+    flag4 = false;
+    flag5 = false;
+  } 
+  else if(extendedFingers == 4){
     console.log("4 fingers extended");
     if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
       GenerateLetters("B");
@@ -115,41 +131,33 @@ Leap.loop(controllerOptions, function(frame) {
           var isVertical = Math.abs(gesture.direction[1]) > Math.abs(gesture.direction[0]);
           //Classify as right-left or up-down
           if(isHorizontal){
-              if(gesture.direction[0] > 0 && universalflag == true){
-                  swipeDirection = "right";
-                 swipeSpace();
-                  universalflag = false;
-              } else if (gesture.direction[0] < 0 && universalflag == true) {
-                  swipeDirection = "left";
-                 swipeSpace();
-                  universalflag = false;
-              }
+            if(gesture.direction[0] > 0 && universalflag == true){
+              swipeDirection = "right";
+              swipeSpace();
+              universalflag = false;
+            } else if (gesture.direction[0] < 0 && universalflag == true) {
+              swipeDirection = "left";
+              swipeSpace();
+              universalflag = false;
+            }
           } else if (isVertical) { //vertical
-              if(gesture.direction[1] > 0){
-                  swipeDirection = "up";
-              } else {
-                  swipeDirection = "down";
-              }                  
+            if(gesture.direction[1] > 0){
+              swipeDirection = "up";
+            } else {
+              swipeDirection = "down";
+            }                  
           }
           else {
             universalflag = true;
           }
           console.log(swipeDirection);
-       }
-     }
-  }
+        }
+      }
+    }
 
-});
+  });
 
 // end setting up scene
-//jquery experimentation edit: WOW IT WORKS 
-$(document).ready(function() {
-  $("#testbutton").click(function() {
-    GenerateLetters("hello"); 
-  });
-});
-
-
   // methods
 
   function GenerateLetters(x) {
