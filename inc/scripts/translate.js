@@ -131,11 +131,11 @@ Leap.loop(controllerOptions, function(frame) {
           var isVertical = Math.abs(gesture.direction[1]) > Math.abs(gesture.direction[0]);
           //Classify as right-left or up-down
           if(isHorizontal){
-            if(gesture.direction[0] > 0 && universalflag == true){
+            if(gesture.direction[0] > 0 && flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
               swipeDirection = "right";
               swipeSpace();
               universalflag = false;
-            } else if (gesture.direction[0] < 0 && universalflag == true) {
+            } else if (gesture.direction[0] < 0 flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true) {
               swipeDirection = "left";
               swipeSpace();
               universalflag = false;
