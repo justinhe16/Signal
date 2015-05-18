@@ -43,7 +43,7 @@ Leap.loopController.on('handFound', function(hand) {
     document.querySelector('canvas').style.display = 'none';
   }
 }).on('frame', function(hand) { //every frame, aka every second or so
-        var extendedFingers = 0;
+  var extendedFingers = 0;
   if (hand.valid){
     for(var f = 0; f < hand.fingers.length; f++){
       var finger = hand.fingers[f];
@@ -91,9 +91,9 @@ Leap.loopController.on('handFound', function(hand) {
   else if(extendedFingers == 0){
     console.log("0 fingers extended");
     if(flag1 == false && flag2 == false && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
-    GenerateLetters("E");
-    universalflag = false;
-  }
+      GenerateLetters("E");
+      universalflag = false;
+    }
     flag1 = false;
     flag2 = false;
     flag3 = false;
