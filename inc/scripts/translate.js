@@ -139,7 +139,7 @@ Leap.loop(controllerOptions, function(frame) {
               swipeDirection = "right";
               swipeSpace();
               universalflag = false;
-            } else if (gesture.direction[0] < 0 flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true) {
+            } else if (gesture.direction[0] < 0 && flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true) {
               swipeDirection = "left";
               swipeSpace();
               universalflag = false;
