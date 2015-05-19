@@ -162,7 +162,7 @@ Leap.loop(controllerOptions, function(frame) {
   });
 
 // end setting up scene
-  // methods
+  // methods added swipeSpace
 
   function GenerateLetters(x) {
     var text = $("<text></text>").text(x);
