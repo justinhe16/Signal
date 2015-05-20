@@ -92,6 +92,30 @@ Leap.loopController.on('handFound', function(hand) {
     flag4 = false;
     flag5 = false;
   }
+  else if(extendedFingers == 2){
+    console.log("2 fingers extended");
+    if(flag1 == false && flag2 == true && flag3 == true && flag4 == false && flag5 == false && universalflag == true){
+      GenerateLetters("H");
+      universalflag = false;
+    }
+    flag1 = false;
+    flag2 = false;
+    flag3 = false;
+    flag4 = false;
+    flag5 = false;
+  } 
+  else if(extendedFingers == 3){
+    console.log("3 fingers extended");
+    if(flag1 == false && flag2 == false && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
+      GenerateLetters("F");
+      universalflag = false;
+    }
+    flag1 = false;
+    flag2 = false;
+    flag3 = false;
+    flag4 = false;
+    flag5 = false;
+  } 
   else if(extendedFingers == 0){
     console.log("0 fingers extended");
     if(flag1 == false && flag2 == false && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
@@ -103,19 +127,7 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-  }
-  else if(extendedFingers == 2){
-    console.log("2 fingers extended");
-    if(flag1 == true && flag2 == true && flag3 == false && flag4 == false && flag5 == false){
-      GenerateLetters("G");
-      universalflag = false;
-    }
-    flag1 = false;
-    flag2 = false;
-    flag3 = false;
-    flag4 = false;
-    flag5 = false;
-  }
+  } 
   else if(extendedFingers == 4){
     console.log("4 fingers extended");
     if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
