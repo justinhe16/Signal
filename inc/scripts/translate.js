@@ -40,16 +40,16 @@ Leap.loopController.on('handFound', function(hand) {
   if (Leap.loopController.frame(0).hands.length === 0){
     document.querySelector('canvas').style.display = 'none';
   }
-}).on('frame', function(hand){ //every frame, aka every second or so
-    var extendedFingers = 0;
-    if (hand.valid){
-      for(var f = 0; f < hand.fingers.length; f++){
-        var finger = hand.fingers[f];
-        if(finger.extended){
-          extendedFingers++;
-          if(finger.type == 0){
-            console.log("flag1");
-            flag1 = true;
+}).on('frame', function(hand, frame){ //every frame, aka every second or so
+  var extendedFingers = 0;
+  if (hand.valid){
+    for(var f = 0; f < hand.fingers.length; f++){
+      var finger = hand.fingers[f];
+      if(finger.extended){
+        extendedFingers++;
+        if(finger.type == 0){
+          console.log("flag1");
+          flag1 = true;
         } //Thumb
         if(finger.type == 1){
           console.log("flag2");
@@ -96,20 +96,21 @@ Leap.loopController.on('handFound', function(hand) {
       GenerateLetters("H");
       universalflag = false;
     }
+    if(flag1 == true && flag2 == false && flag3 == false && flag4 == false && flag5 == true && universalflag == true){
+      GenerateLetters("Y");
+      univeralflag=false;
+    }
     else if(flag1 == true && flag2 == true && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
       for(var f = 0; f < hand.fingers.length; f++){
         var finger = hand.fingers[f];
-        if (finger.type == 1){
-          for(var p = 0; p < frame.pointables.length; p++){
-            var finger2 = frame.pointable[f];
-            if(finger2.position.direction[1] > 0){
-              GenerateLetters("L");
-              universalflag = false;
-            }
-            else{
-              GenerateLetters("G");
-              universalflag = false;
-            }
+        if (finger.type == 0){
+          if(finger.direction[0] < -0.5){
+            GenerateLetters("L");
+            universalflag = false;
+          }
+          else{
+            GenerateLetters("G");
+            universalflag = false;
           }
         }
       }
@@ -125,6 +126,10 @@ Leap.loopController.on('handFound', function(hand) {
     if(flag1 == false && flag2 == false && flag3 == true && flag4 == true && flag5 == true && universalflag == true){
       GenerateLetters("F");
       universalflag = false;
+    }
+    if(flag1 == false && flag2 == true && flag3 == true && flag4 == true && flag5 == false && universalflag == true){
+      GenerateLetters("W");
+      universalflag=false;
     }
     flag1 = false;
     flag2 = false;
