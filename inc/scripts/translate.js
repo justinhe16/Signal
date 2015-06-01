@@ -201,13 +201,15 @@ Leap.loop(controllerOptions, function(frame) {
           }
           //console.log(swipeDirection);
         }
-        if(gesture.type == "circle" && universalflag == true){
-          GenerateLetters(".");
-          universalflag = false;
-        }
-        else{
+        if(gesture.type == "circle"){
+          if (flag2 == true && universalflag == true){
+            GenerateLetters(".");
+            universalflag = false;
+          }
+          else{
             universalflag = true;
           }
+        }
       }
     }
 
