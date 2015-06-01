@@ -201,6 +201,9 @@ Leap.loop(controllerOptions, function(frame) {
           }
           //console.log(swipeDirection);
         }
+        if(gesture.type == "circle"){
+          GenerateLetters(".");
+        }
       }
     }
 
