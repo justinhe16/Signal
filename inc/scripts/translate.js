@@ -204,10 +204,10 @@ Leap.loop(controllerOptions, function(frame) {
         if(gesture.type == "circle"){
           GenerateLetters(".");
           universalflag = false;
-          else{
+        }
+        else{
             universalflag = true;
           }
-        }
       }
     }
 
