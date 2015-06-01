@@ -33,7 +33,6 @@ var flag2 = false;
 var flag3 = false;
 var flag4 = false;
 var flag5 = false;
-var circleflag = false;
 
 Leap.loopController.on('handFound', function(hand) {
   document.querySelector('canvas').style.display = 'block';
@@ -90,7 +89,6 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-    circleflag = true;
   }
   else if(extendedFingers == 2){
     console.log("2 fingers extended");
@@ -100,7 +98,7 @@ Leap.loopController.on('handFound', function(hand) {
     }
     if(flag1 == true && flag2 == false && flag3 == false && flag4 == false && flag5 == true && universalflag == true){
       GenerateLetters("Y");
-      univeralflag=false;
+      universalflag = false;
     }
     else if(flag1 == true && flag2 == true && flag3 == false && flag4 == false && flag5 == false && universalflag == true){
       for(var f = 0; f < hand.fingers.length; f++){
@@ -122,7 +120,6 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-    circleflag = true;
   } 
   else if(extendedFingers == 3){
     console.log("3 fingers extended");
@@ -139,7 +136,6 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-    circleflag = true;
   } 
   else if(extendedFingers == 0){
     console.log("0 fingers extended");
@@ -152,7 +148,6 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-    circleflag = true;
   } 
   else if(extendedFingers == 4){
     console.log("4 fingers extended");
@@ -165,7 +160,6 @@ Leap.loopController.on('handFound', function(hand) {
     flag3 = false;
     flag4 = false;
     flag5 = false;
-    circleflag = true;
   }
   else{
     universalflag = true;
@@ -206,16 +200,6 @@ Leap.loop(controllerOptions, function(frame) {
             universalflag = true;
           }
           //console.log(swipeDirection);
-        }
-        if(gesture.type == "circle"){
-          if (gesture.state == "start" && universalflag == true && circleflag == true){
-            GenerateLetters(".");
-            universalflag = false;
-            circleflag = false;
-          }
-          else{
-            universalflag = true;
-          }
         }
       }
     }
