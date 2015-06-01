@@ -201,7 +201,7 @@ Leap.loop(controllerOptions, function(frame) {
           }
           //console.log(swipeDirection);
         }
-        if(gesture.type == "circle"){
+        if(gesture.type == "circle" && universalflag == true){
           GenerateLetters(".");
           universalflag = false;
         }
