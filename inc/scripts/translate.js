@@ -131,6 +131,10 @@ Leap.loopController.on('handFound', function(hand) {
       GenerateLetters("W");
       universalflag=false;
     }
+    if(flag1 == true && flag2 == true && flag3 == true && flag4 == false && flag5 == false && universalflag == true){
+      GenerateLetters("P");
+      universalflag=false;
+    }
     flag1 = false;
     flag2 = false;
     flag3 = false;
