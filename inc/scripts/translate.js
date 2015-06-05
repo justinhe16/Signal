@@ -53,6 +53,7 @@ Leap.loopController.on('handFound', function(hand) {
  var extendedFingers = 0;
 
  if (hand.valid && spaceflag == true){
+  //flag system in order to set up boolean flags for different fingers
   for(var f = 0; f < hand.fingers.length; f++){
     var finger = hand.fingers[f];
     if(finger.extended){
